@@ -145,6 +145,7 @@ select {
 
 .text-dark { color: hsl( var(--clr-dark) );}
 .text-accent { color: hsl( var(--clr-light) );}
+.text-accent-opacity50{ color: hsl( var(--clr-light) / 0.5 )}
 .text-white { color: hsl( var(--clr-white) );}
 
 /* typography */
@@ -187,3 +188,37 @@ select {
     font-weight: 700;
     color: hsl( var(--clr-white) / .25);
 }
+
+/* ------------------- */
+/* Components   */
+/* ------------------- */
+
+.large-button{
+    position: relative;
+    display: grid;
+    z-index: 1;
+    place-items: center;
+    text-decoration: none;
+    padding: 0 2em;
+    border-radius: 50%;
+    aspect-ratio: 1;
+}
+
+.large-button::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%; 
+    background: hsl( var(--clr-white) / .15 );
+    border-radius: 50%;
+    transition: opacity 500ms linear, transform 500ms ease-in-out;
+}
+
+.large-button:hover::after,
+.large-button:focus::after{
+    opacity:1;
+    transform: scale(1.5)
+}
+    
+   
