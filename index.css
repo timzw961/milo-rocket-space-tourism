@@ -166,7 +166,7 @@ select {
     .grid-container{
         text-align: left;
         column-gap: var(--container-gap, 2rem);
-        grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0px, 30rem)) minmax(1rem, 1fr);
+        grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0px, 45rem)) minmax(1rem, 1fr);
     }
 
     .grid-container > *:first-child{
@@ -183,8 +183,6 @@ select {
     }
 }
 
-
-
 .sr-only {
   position: absolute; 
   width: 1px;
@@ -195,6 +193,21 @@ select {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap; /* added line */
   border: 0;
+}
+
+.skip-to-content {
+    position: absolute;
+    z-index: 5000;
+    background: hsl( var(--clr-white) );
+    color: hsl( var(--clr-dark) );
+    padding: .5em 1em;
+    margin-inline: auto;
+    transform: translateY(-100%);
+    transition: transform 250ms ease-in;
+}
+
+.skip-to-content:focus {
+    transform: translateY(0);
 }
 
 /* colors */
@@ -283,13 +296,33 @@ select {
     transform: scale(1.3)
 }
 
+/* primary-header */
+
+.logo {
+    margin: 1.5rem clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.primary-header {
+    justify-content: space-between;
+    align-items: center;
+}
+
 .primary-navigation{
+    --gap: clamp(1.5rem, 5vw, 3.5rem);
     --underline-gap: 2rem;
     list-style: none;
     padding: 0;
     margin: 0;
     background: hsl( var(--clr-dark) / .95);
+}
 
+.primary-navigation a{
+    text-decoration: none;
+}
+
+.primary-navigation a > span {
+    font-weight: 700;
+    margin-right: .5em;
 }
 
 .mobile-nav-toggle{
@@ -348,13 +381,39 @@ select {
 
 }
 
-.primary-navigation a{
-    text-decoration: none;
+@media (min-width: 35em){
+    .primary-navigation {
+        padding-inline: clamp(3rem, 10vw, 7rem);
+    }
 }
 
-.primary-navigation a > span {
-    font-weight: 700;
-    margin-right: .5em;
+@media (min-width: 35em) and (max-width: 44.9999em){
+    .primary-navigation a > span {
+        display: none;
+    }
+
+}
+
+@media (min-width: 45em){
+    .primary-header::after {
+        content: '';
+        display: block;
+        position: relative;
+        height: 1px;
+        width: 100%;
+        margin-right: -2.5rem;
+        background: hsl( var(--clr-white) / 0.3);
+        order: 1;
+        z-index: 1000;
+    }
+    
+    nav {
+        order: 2;
+    }
+
+    .primary-navigation{
+        margin-block: 2rem;
+    }
 }
 
 .underline-indicators > * {
